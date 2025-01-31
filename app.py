@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from flask_uploads import UploadSet, configure_uploads, IMAGES
 import numpy as np
 import pandas as pd
@@ -69,6 +69,20 @@ def ex3():
         return render_template('ex3.html', prediction_text='Spam' if prediction[0] == 1 else 'Non Spam')
     
     return render_template('ex3.html')
+
+
+@app.route('/api/predict', methods=['POST'])
+def api_predict():
+    if request.method == 'POST':
+        cv=pickle.load(open('./models/cv.pkl','rb'))
+        clf=pickle.load(open('./models/clf.pkl','rb'))
+
+        email = request.json['email']
+        tokenized_email = cv.transform([email])
+        prediction = clf.predict(tokenized_email)
+        
+        return jsonify({'prediction': 'Spam' if prediction[0] == 1 else 'Non Spam'})
+    
 
 if __name__ == '__main__':
     app.run()
