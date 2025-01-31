@@ -54,5 +54,21 @@ def ex2():
     
     return render_template('ex2.html')
 
+
+# cv et clf pour les emails
+@app.route('/ex3', methods=['GET', 'POST'])
+def ex3():
+    if request.method == 'POST':
+        cv = pickle.load(open('./models/cv.pkl', 'rb'))
+        clf = pickle.load(open('./models/clf.pkl', 'rb'))
+        
+        email = request.form['email']
+        tokenized_email = cv.transform([email])
+        prediction = clf.predict(tokenized_email)
+        
+        return render_template('ex3.html', prediction_text='Spam' if prediction[0] == 1 else 'Non Spam')
+    
+    return render_template('ex3.html')
+
 if __name__ == '__main__':
     app.run()

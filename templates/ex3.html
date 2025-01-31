@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classification d'Email</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <main class="container-fluid">
+        <div class="bg-light p-5 rounded form-group col-md-7 col-lg-8">
+            <h1>Classification d'Email</h1>
+            <form action="{{url_for('ex3')}}" method="POST">
+                <label for="email" class="form-label">Contenu de l'email : </label>
+                <textarea class="form-control" name="email" rows="10" placeholder="Saisissez le contenu de l'email ici..." required="required"></textarea><br>
+                <button type="submit" class="btn btn-primary btn-block btn-large">Classifiez</button>
+            </form>
+            <br>
+            {% if prediction_text %}
+                <div class="alert alert-info">
+                    <b>Résultat de la classification : {{ prediction_text }}</b>
+                </div>
+            {% endif %}
+            <br>
+        </div>
+    </main>
+</body>
+</html>
