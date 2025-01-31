@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Predict CO2 Emission</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <main class="container-fluid">
+        <div class="bg-light p-5 rounded form-group col-md-7 col-lg-8">
+            <h1>Prédiction des émissions de CO2</h1>
+            <form action="{{url_for('predict')}}" method="POST">
+                <label for="MODELYEAR" class="form-label">Année du modèle : </label>
+                <input class="form-control" type="number" name="MODELYEAR" placeholder="Année du modèle" required="required" /><br>
+                <label for="ENGINESIZE" class="form-label">Taille du moteur : </label>
+                <input class="form-control" type="number" step="0.1" name="ENGINESIZE" placeholder="Taille du moteur" required="required" /><br>
+                <label for="CYLINDERS" class="form-label">Nombre de cylindres : </label>
+                <input class="form-control" type="number" name="CYLINDERS" placeholder="Nombre de cylindres" required="required" /><br>
+                <label for="FUELCONSUMPTION_COMB" class="form-label">Consommation au 100km: </label>
+                <input class="form-control" type="number" step="0.1" name="FUELCONSUMPTION_COMB" placeholder="Consommation de carburant combinée" required="required" /><br>
+
+                <button type="submit" class="btn btn-primary btn-block btn-large">Prédiction</button>
+            </form>
+
+            <br>
+            <b>{{prediction_text}}</b>
+            <br>
+        </div>
+    </main>
+
+</body>
+</html>
