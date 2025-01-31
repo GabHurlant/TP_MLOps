@@ -3,5 +3,5 @@ Flask_Reuploaded==1.4.0
 numpy==2.2.2
 pandas==2.2.3
 scikit_learn==1.6.1
-tensorflow==2.18.0
-tensorflow_intel==2.18.0
+tensorflow==2.13.0
+gunicorn==22.0.0
